@@ -9,6 +9,7 @@
 
 struct tree_node {
 	int32_t data;
+	struct tree_node *parent;
 	struct tree_node *left;
 	struct tree_node *right;
 };
@@ -69,11 +70,19 @@ tree_node_t *root;
 // get node or leaf value
 #define BST_GET_NODE(a)	((a)->data)
 
+// set node value
+#define BST_SET_NODE(a, b)	((a)->data = (b))
+
+// set parent of current node
+#define BST_SET_PARENT(a, b)	((a)->parent = (b))
+
 void bs_dump_tree(tree_node_t *t);
 tree_node_t *bs_tree_search(tree_node_t *t, int32_t data);
 tree_node_t *bs_tree_minimum_key(tree_node_t *t);
 tree_node_t *bs_tree_maximum_key(tree_node_t *t);
+tree_node_t *bs_tree_successor(tree_node_t *t);
 tree_node_t *bs_insert(tree_node_t *t, int32_t data);
+void bs_delete(tree_node_t *t, int32_t data);
 void bs_destruct_tree(tree_node_t *t);
 
 #endif /* _BS_TREE_H_ */
